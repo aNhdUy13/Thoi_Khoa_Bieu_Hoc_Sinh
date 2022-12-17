@@ -83,7 +83,6 @@ public class AdapterGridLayout extends ArrayAdapter {
             txt_subject.setText(timetable.getSubject());
         }
 
-
         return view;
 
     }

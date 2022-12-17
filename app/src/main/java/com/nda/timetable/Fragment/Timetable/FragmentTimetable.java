@@ -103,8 +103,12 @@ public class FragmentTimetable extends Fragment {
         EditText edt_inputSubject = dialog.findViewById(R.id.edt_inputSubject);
         CardView cv_update = dialog.findViewById(R.id.cv_update);
 
-        txt_updateAddress.setText(timetable.getDay() + " - " + timetable.getTime() + " - " + timetable.getSlot());
+        txt_updateAddress.setText(timetable.getTime() + " - " + timetable.getDay() + " - " + timetable.getSlot());
 
+        if (!timetable.getSubject().isEmpty())
+        {
+            edt_inputSubject.setText(timetable.getSubject());
+        }
         cv_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

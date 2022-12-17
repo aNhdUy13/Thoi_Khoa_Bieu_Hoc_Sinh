@@ -13,6 +13,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.nda.timetable.Fragment.Timetable.FragmentTimetable;
@@ -45,15 +48,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     private void init()
     {
-        setUpNavigationDrawer();
+        try {
+            setUpNavigationDrawer();
 
-        /**
-         Set DEFAULT fragment
-         */
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.content_frame,new FragmentTimetable());
-        fragmentTransaction.commit();
+            /**
+             Set DEFAULT fragment
+             */
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.content_frame,new FragmentTimetable());
+            fragmentTransaction.commit();
+        } catch (Exception e)
+        {
+            Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
+        }
+
 
     }
 
