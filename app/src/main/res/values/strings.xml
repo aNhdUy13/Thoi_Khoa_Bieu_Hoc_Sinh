@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Thời Khóa Biểu Học Sinh</string>
+    <string name="app_name">Thời Khóa Biểu HS</string>
+    <string name="open_drawer">Thời Khóa Biểu HS</string>
+    <string name="close_drawer">Thời Khóa Biểu HS</string>
 </resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <!--
+                Cần set Group và CheckableBehavior
+                ==> Để sử dụng cho việc Khi click vào mỗi item trên Navivation Drawer,
+                thì nó sẽ được check.
+           -->
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_timetable"
+            android:title="Thời Khóa Biểu"
+            android:icon="@drawable/ic_baseline_calendar_month_32"/>
+
+        <item android:id="@+id/nav_utilities"
+            android:title="Tiện Ích"
+            android:icon="@drawable/ic_baseline_dehaze_24"/>
+
+
+    </group>
+</menu>
