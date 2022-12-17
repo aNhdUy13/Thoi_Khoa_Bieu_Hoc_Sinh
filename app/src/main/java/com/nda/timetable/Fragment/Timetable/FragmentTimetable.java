@@ -2,21 +2,28 @@ package com.nda.timetable.Fragment.Timetable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.app.Dialog;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nda.timetable.DataLocalManager;
 import com.nda.timetable.Models.Timetable;
 import com.nda.timetable.R;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,12 +45,93 @@ public class FragmentTimetable extends Fragment {
 
         initUI();
         initiate();
+        displayTimetable();
 
 
         return view;
     }
 
     private void initiate() {
+
+        gridView_morning.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Timetable timetable = timetableMorningList.get(i);
+                if (timetable.getSlot().equals("TITLE"))
+                {
+
+                } else {
+                    dialogUpdateTimetable(timetable);
+                }
+            }
+        });
+
+        gridView_afternoon.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Timetable timetable = timetableAfternoonList.get(i);
+                if (timetable.getSlot().equals("TITLE"))
+                {
+
+                } else {
+                    dialogUpdateTimetable(timetable);
+                }
+            }
+        });
+
+        gridView_night.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Timetable timetable = timetableNightList.get(i);
+                if (timetable.getSlot().equals("TITLE"))
+                {
+
+                } else {
+                    dialogUpdateTimetable(timetable);
+                }
+            }
+        });
+    }
+
+
+    private void dialogUpdateTimetable(Timetable timetable) {
+        Dialog dialog = new Dialog(getContext());
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setContentView(R.layout.dialog_update_timetable);
+
+        TextView txt_updateAddress = dialog.findViewById(R.id.txt_updateAddress);
+        EditText edt_inputSubject = dialog.findViewById(R.id.edt_inputSubject);
+        CardView cv_update = dialog.findViewById(R.id.cv_update);
+
+        txt_updateAddress.setText(timetable.getDay() + " - " + timetable.getTime() + " - " + timetable.getSlot());
+
+        cv_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String strSubject = edt_inputSubject.getText().toString().trim();
+
+                if (strSubject.isEmpty())
+                {
+                    Toast.makeText(getContext(), "Error : nhập môn học" , Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                DataLocalManager.getInstance().dbHandler.queryData("UPDATE Timetable SET timetableSubject = '"
+                        + strSubject + "' WHERE timetableId = '" + timetable.getId() + "'");
+
+                displayTimetable();
+                dialog.dismiss();
+                Toast.makeText(getContext(), "Cập nhật môn học thành công !" , Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        dialog.show();
+    }
+
+
+
+    public void displayTimetable() {
 
         timetableMorningList.clear();
         timetableAfternoonList.clear();
@@ -79,6 +167,8 @@ public class FragmentTimetable extends Fragment {
         gridView_afternoon.setAdapter(adapterGridLayout2);
         gridView_night.setAdapter(adapterGridLayout3);
     }
+
+
 
     private void initUI() {
         gridView_morning = view.findViewById(R.id.gridView_morning);

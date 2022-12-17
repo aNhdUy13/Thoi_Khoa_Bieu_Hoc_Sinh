@@ -24,8 +24,8 @@
 
     <ImageView
         android:id="@+id/img_add"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         android:visibility="gone"
         android:src="@drawable/ic_baseline_add_512"/>
 

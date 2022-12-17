@@ -1,12 +1,15 @@
 package com.nda.timetable.Fragment.Timetable;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,8 +17,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 
 
+import com.nda.timetable.DataLocalManager;
 import com.nda.timetable.Models.Timetable;
 import com.nda.timetable.R;
 
@@ -36,6 +41,7 @@ public class AdapterGridLayout extends ArrayAdapter {
     TextView txt_subject;
     LinearLayout ll_item;
     ImageView img_add;
+
 
     public AdapterGridLayout(@NonNull Context context, List<Timetable> timetableList)
     {
@@ -78,24 +84,10 @@ public class AdapterGridLayout extends ArrayAdapter {
         }
 
 
-        ll_item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (timetable.getSlot().equals("TITLE"))
-                {
-
-                } else {
-                    Toast.makeText(getContext(), timetable.getDay() + " - " + timetable.getTime()
-                            + " - " + timetable.getSlot() + " - "+ timetable.getSubject(), Toast.LENGTH_SHORT).show();
-
-                }
-
-            }
-        });
-
         return view;
 
     }
+
 
 
     @Override
