@@ -5,7 +5,11 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.app.PendingIntent;
+import android.appwidget.AppWidgetManager;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -16,14 +20,16 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.RemoteViews;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nda.timetable.DataLocalManager;
+import com.nda.timetable.Fragment.Timetable.Widget.MyAppWidget;
+import com.nda.timetable.MainActivity;
 import com.nda.timetable.Models.Timetable;
 import com.nda.timetable.R;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +43,10 @@ public class FragmentTimetable extends Fragment {
     List<Timetable> timetableNightList = new ArrayList<>();
 
     AdapterGridLayout adapterGridLayout, adapterGridLayout2, adapterGridLayout3;
+
+    ImageView img_hintToWidget;
+
+    private int appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
     @Nullable
     @Override
@@ -52,6 +62,14 @@ public class FragmentTimetable extends Fragment {
     }
 
     private void initiate() {
+
+
+        img_hintToWidget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         gridView_morning.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -93,7 +111,6 @@ public class FragmentTimetable extends Fragment {
         });
     }
 
-
     private void dialogUpdateTimetable(Timetable timetable) {
         Dialog dialog = new Dialog(getContext());
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -114,19 +131,12 @@ public class FragmentTimetable extends Fragment {
             public void onClick(View view) {
                 String strSubject = edt_inputSubject.getText().toString().trim();
 
-                if (strSubject.isEmpty())
-                {
-                    Toast.makeText(getContext(), "Error : nhập môn học" , Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
                 DataLocalManager.getInstance().dbHandler.queryData("UPDATE Timetable SET timetableSubject = '"
                         + strSubject + "' WHERE timetableId = '" + timetable.getId() + "'");
 
                 displayTimetable();
                 dialog.dismiss();
-                Toast.makeText(getContext(), "Cập nhật môn học thành công !" , Toast.LENGTH_SHORT).show();
-
             }
         });
 
@@ -178,6 +188,8 @@ public class FragmentTimetable extends Fragment {
         gridView_morning = view.findViewById(R.id.gridView_morning);
         gridView_afternoon = view.findViewById(R.id.gridView_afternoon);
         gridView_night = view.findViewById(R.id.gridView_night);
+
+        img_hintToWidget = view.findViewById(R.id.img_hintToWidget);
 
     }
 

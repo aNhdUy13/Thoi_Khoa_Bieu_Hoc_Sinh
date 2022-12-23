@@ -19,12 +19,13 @@
                     android:background="@drawable/shape_normal"
 
                     android:orientation="horizontal">
-                    <TextView
+                    <ImageView
+                        android:id="@+id/img_hintToWidget"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:background="@drawable/shape_normal"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_baseline_window_512"
 
                         android:textColor="@color/black"/>
                     <TextView
@@ -110,6 +111,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="100dp"
                         android:orientation="vertical">
 
                         <LinearLayout

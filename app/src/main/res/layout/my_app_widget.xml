@@ -1,0 +1,218 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Widget.ThờiKhóaBiểuHọcSinh.AppWidget.Container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.ThờiKhóaBiểuHọcSinh.AppWidgetContainer">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/shape_normal"
+
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/img_backToApp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:src="@drawable/ic_baseline_home_512"
+
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="T2"
+                android:textSize="13dp"
+                android:background="@drawable/shape_normal_solid"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="T3"
+                android:textSize="13dp"
+                android:background="@drawable/shape_normal"
+
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="T4"
+                android:textSize="13dp"
+                android:background="@drawable/shape_normal_solid"
+
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="T5"
+                android:textSize="13dp"
+                android:background="@drawable/shape_normal"
+
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="T6"
+                android:textSize="13dp"
+                android:background="@drawable/shape_normal_solid"
+
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="T7"
+                android:textSize="13dp"
+                android:background="@drawable/shape_normal"
+
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="CN"
+                android:textSize="13dp"
+                android:background="@drawable/shape_normal_solid"
+
+                android:textColor="#E91E63"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/img_refreshData"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_refresh_512"/>
+
+
+                <ImageView
+                    android:id="@+id/img_backwardTime"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:visibility="gone"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_left_512"/>
+
+                <TextView
+                    android:id="@+id/txt_test"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="Sáng"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+
+
+                <ImageView
+                    android:id="@+id/img_forwardTime"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_navigate_next_512"/>
+            </LinearLayout>
+
+            <GridView
+                android:id="@+id/gridView_morning_widget"
+                android:layout_width="match_parent"
+                android:layout_height="420dp"
+                android:background="@color/white"
+                android:numColumns="8"/>
+        </LinearLayout>
+
+<!--        <ScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="100dp"-->
+<!--                android:orientation="vertical">-->
+
+
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="30dp"-->
+<!--                        android:text="Chiều"-->
+<!--                        android:textSize="15dp"-->
+<!--                        android:background="@color/primary_color"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:padding="5dp"-->
+<!--                        android:gravity="center"/>-->
+<!--                    <GridView-->
+<!--                        android:id="@+id/gridView_afternoon"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="420dp"-->
+<!--                        android:numColumns="8"/>-->
+<!--                </LinearLayout>-->
+
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="30dp"-->
+<!--                        android:text="Tối"-->
+<!--                        android:textSize="15dp"-->
+<!--                        android:background="@color/primary_color"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:padding="5dp"-->
+<!--                        android:gravity="center"/>-->
+<!--                    <GridView-->
+<!--                        android:id="@+id/gridView_night"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="420dp"-->
+<!--                        android:numColumns="8"/>-->
+<!--                </LinearLayout>-->
+
+
+<!--            </LinearLayout>-->
+<!--        </ScrollView>-->
+
+    </LinearLayout>
+
+</RelativeLayout>

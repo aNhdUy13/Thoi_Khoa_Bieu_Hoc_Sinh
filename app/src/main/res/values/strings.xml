@@ -2,4 +2,8 @@
     <string name="app_name">Thời Khóa Biểu HS</string>
     <string name="open_drawer">Thời Khóa Biểu HS</string>
     <string name="close_drawer">Thời Khóa Biểu HS</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
+    <string name="configure">Configure</string>
 </resources>
