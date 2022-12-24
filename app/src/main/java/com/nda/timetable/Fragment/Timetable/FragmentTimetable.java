@@ -12,6 +12,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RemoteViews;
 import android.widget.TextView;
 
@@ -67,7 +69,7 @@ public class FragmentTimetable extends Fragment {
         img_hintToWidget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                dialogHintWidget();
             }
         });
 
@@ -109,6 +111,54 @@ public class FragmentTimetable extends Fragment {
                 }
             }
         });
+    }
+
+    private void dialogHintWidget() {
+        Dialog dialog = new Dialog(getContext());
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setContentView(R.layout.dialog_hint_widget);
+
+        TextView txt_hintCreateWidget = dialog.findViewById(R.id.txt_hintCreateWidget);
+        TextView txt_hintRefreshWidget = dialog.findViewById(R.id.txt_hintRefreshWidget);
+        LinearLayout ll_createWidget = dialog.findViewById(R.id.ll_createWidget);
+        LinearLayout ll_refreshWidget = dialog.findViewById(R.id.ll_refreshWidget);
+
+
+        txt_hintCreateWidget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ll_createWidget.setVisibility(View.VISIBLE);
+                ll_refreshWidget.setVisibility(View.GONE);
+
+                txt_hintCreateWidget.setBackgroundColor(Color.parseColor("#FF01579B"));
+                txt_hintRefreshWidget.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
+
+                txt_hintCreateWidget.setTextColor(Color.parseColor("#FFFFFFFF"));
+                txt_hintRefreshWidget.setTextColor(Color.parseColor("#FF000000"));
+
+                txt_hintCreateWidget.setTypeface(txt_hintCreateWidget.getTypeface(), Typeface.BOLD);
+                txt_hintRefreshWidget.setTypeface(txt_hintRefreshWidget.getTypeface(), Typeface.NORMAL);
+
+            }
+        });
+        txt_hintRefreshWidget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ll_refreshWidget.setVisibility(View.VISIBLE);
+                ll_createWidget.setVisibility(View.GONE);
+
+                txt_hintRefreshWidget.setBackgroundColor(Color.parseColor("#FF01579B"));
+                txt_hintCreateWidget.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
+
+                txt_hintRefreshWidget.setTextColor(Color.parseColor("#FFFFFFFF"));
+                txt_hintCreateWidget.setTextColor(Color.parseColor("#FF000000"));
+
+                txt_hintRefreshWidget.setTypeface(txt_hintRefreshWidget.getTypeface(), Typeface.BOLD);
+                txt_hintCreateWidget.setTypeface(txt_hintCreateWidget.getTypeface(), Typeface.NORMAL);
+            }
+        });
+
+        dialog.show();
     }
 
     private void dialogUpdateTimetable(Timetable timetable) {

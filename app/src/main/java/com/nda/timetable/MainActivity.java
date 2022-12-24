@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.nda.timetable.Fragment.Calendar.FragmentCalendar;
 import com.nda.timetable.Fragment.Timetable.FragmentTimetable;
 import com.nda.timetable.Fragment.FragmentUtilities;
 
@@ -30,7 +31,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;
 
     private static final int FRAGMENT_TIMETABLE = 0;
-    private static final int FRAGMENT_UTILITIES = 1;
+    private static final int FRAGMENT_CALENDAR = 1;
+    private static final int FRAGMENT_UTILITIES = 2;
 
 
     private int mCurrentFragment = 0;
@@ -106,6 +108,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 toolbar.setTitle("Thời khóa biểu");
                 replaceFragment(new FragmentTimetable());
                 mCurrentFragment = FRAGMENT_TIMETABLE;
+            }
+
+        }
+        else if (id == R.id.nav_calendar)
+        {
+            if (mCurrentFragment != FRAGMENT_CALENDAR)
+            {
+                toolbar.setTitle("Lịch");
+                replaceFragment(new FragmentCalendar());
+                mCurrentFragment = FRAGMENT_CALENDAR;
             }
 
         }

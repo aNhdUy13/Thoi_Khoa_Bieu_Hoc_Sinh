@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:initialLayout="@layout/my_app_widget"
     android:minWidth="350dp"
-    android:minHeight="180dp"
+    android:minHeight="200dp"
     android:resizeMode="horizontal|vertical"
-    android:updatePeriodMillis="3600000"
+    android:updatePeriodMillis="1000"
     android:widgetCategory="home_screen" />

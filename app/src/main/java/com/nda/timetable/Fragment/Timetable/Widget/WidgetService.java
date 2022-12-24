@@ -7,9 +7,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
+import android.widget.TextView;
 
 import com.nda.timetable.Models.Timetable;
 import com.nda.timetable.R;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +34,7 @@ class WidgetRemoteViewFactory implements RemoteViewsService.RemoteViewsFactory{
     List<Timetable> timetableList = new ArrayList<>();
     private int appWidgetId;
 
+    String passedSignal, refreshSignal;
 
     public WidgetRemoteViewFactory(Context context, Intent intent) {
 
@@ -38,12 +42,29 @@ class WidgetRemoteViewFactory implements RemoteViewsService.RemoteViewsFactory{
         appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
                 AppWidgetManager.INVALID_APPWIDGET_ID);
 
+        passedSignal = intent.getStringExtra("displayTime");
+        refreshSignal = intent.getStringExtra("displayTime");
+
     }
 
     @Override
     public void onCreate() {
         dbBroadcast = context.openOrCreateDatabase("Timetable.sqlite", 0, null);
-        Cursor cursor = dbBroadcast.rawQuery("SELECT * FROM Timetable", null);
+        Cursor cursor = null;
+        if (passedSignal.equals("Sáng"))
+        {
+            cursor = dbBroadcast.rawQuery("SELECT * FROM Timetable WHERE timetableTime = 'Sáng'", null);
+        }
+        else if (passedSignal.equals("Chiều"))
+        {
+            cursor = dbBroadcast.rawQuery("SELECT * FROM Timetable WHERE timetableTime = 'Chiều'", null);
+        }
+        else{
+            cursor = dbBroadcast.rawQuery("SELECT * FROM Timetable WHERE timetableTime = 'Tối'", null);
+        }
+
+//        cursor = dbBroadcast.rawQuery("SELECT * FROM Timetable", null);
+
         while (cursor.moveToNext())
         {
             int id = cursor.getInt(0);
@@ -61,7 +82,6 @@ class WidgetRemoteViewFactory implements RemoteViewsService.RemoteViewsFactory{
     @Override
     public RemoteViews getViewAt(int i) {
         RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.item_cell_timetable_widget);
-
 
         if (timetableList.get(i).getSubject().isEmpty())
         {

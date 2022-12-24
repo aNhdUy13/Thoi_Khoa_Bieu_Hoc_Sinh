@@ -11,7 +11,12 @@
     <group android:checkableBehavior="single">
         <item android:id="@+id/nav_timetable"
             android:title="Thời Khóa Biểu"
-            android:icon="@drawable/ic_baseline_calendar_month_32"/>
+            android:icon="@drawable/ic_schedule"/>
+
+        <item android:id="@+id/nav_calendar"
+            android:title="Lịch"
+            android:icon="@drawable/ic_calendar"/>
+
 
         <item android:id="@+id/nav_utilities"
             android:title="Tiện Ích"

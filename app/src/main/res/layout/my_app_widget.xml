@@ -103,7 +103,7 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -111,11 +111,7 @@
                 android:orientation="horizontal"
                 android:gravity="center">
 
-                <ImageView
-                    android:id="@+id/img_refreshData"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_baseline_refresh_512"/>
+
 
 
                 <ImageView
@@ -127,30 +123,56 @@
                     android:src="@drawable/ic_baseline_keyboard_arrow_left_512"/>
 
                 <TextView
-                    android:id="@+id/txt_test"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txt_titleMorning"
+                    android:layout_width="70dp"
                     android:layout_height="30dp"
                     android:text="Sáng"
                     android:textSize="15dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/light_blue_widget"
                     android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:padding="5dp"
                     android:gravity="center"/>
 
 
+
+                <TextView
+                    android:id="@+id/txt_titleAfternoon"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:text="Chiều"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+
+                    android:textColor="@color/black"
+
+                    android:padding="5dp"
+                    android:gravity="center"/>
+
+
+                <TextView
+                    android:id="@+id/txt_titleNight"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:text="Tối"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+
+                    android:padding="5dp"
+                    android:gravity="center"/>
+
                 <ImageView
-                    android:id="@+id/img_forwardTime"
+                    android:id="@+id/img_refreshData"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/ic_baseline_navigate_next_512"/>
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/ic_baseline_refresh_512"/>
             </LinearLayout>
 
             <GridView
-                android:id="@+id/gridView_morning_widget"
+                android:id="@+id/gridView_widget"
                 android:layout_width="match_parent"
-                android:layout_height="420dp"
+                android:layout_height="match_parent"
                 android:background="@color/white"
                 android:numColumns="8"/>
         </LinearLayout>
