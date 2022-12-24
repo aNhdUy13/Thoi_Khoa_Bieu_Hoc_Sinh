@@ -7,7 +7,9 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="400dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         app:cardCornerRadius="10dp">
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,7 +50,7 @@
                 android:id="@+id/ll_createWidget"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
                 <ScrollView
@@ -59,6 +61,87 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="250dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/img_hint1"/>
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_baseline_double_arrow_512"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="250dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/img_hint2"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="*Cách 1"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/light_blue_900"
+                            android:textStyle="bold"
+                            android:textSize="15dp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="+ Bước 1 : NHẤN và GIỮ ở màn hình chính, sau đó WIDGET sẽ hiện ra, khi click vào đó bạn sẽ thấy WIDGET của ứng dụng"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="13dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="250dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/img_m1_step1"/>
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_baseline_double_arrow_512"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="250dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/img_m1_step2"/>
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="+ Bước 2 : Giữ vào WIDGET của ứng dụng để thực hiện kéo thả ra màn hình."
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="13dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="250dp"
+                                android:src="@drawable/img_m1_step3"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
                 </ScrollView>
@@ -83,8 +166,46 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Để làm mới TKB, bạn cần xóa WIDGET và TẠO LẠI (Xin lỗi về sự bất tiện này)"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/light_blue_900"
+                            android:textStyle="bold"
+                            android:textSize="15dp"/>
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="+ Để có thể xóa WIDGET, bạn chỉ cần ẤN và GIỮ WIDGET, sau đó chọn XÓA."
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/light_blue_900"
+                            android:textStyle="bold"
+                            android:textSize="15dp"/>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="250dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/img_del"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="+ Để tạo lại WIDGET, thực hiện lại bước 'Tạo widget'"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/light_blue_900"
+                            android:textStyle="bold"
+                            android:textSize="15dp"/>
                     </LinearLayout>
                 </ScrollView>
             </LinearLayout>

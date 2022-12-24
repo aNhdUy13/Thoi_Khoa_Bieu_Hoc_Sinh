@@ -24,8 +24,7 @@
         <item name="appWidgetInnerRadius">8dp</item>
     </style>
 
-    <style name="Theme.ThờiKhóaBiểuHọcSinh.AppWidgetContainer"
-        parent="Theme.ThờiKhóaBiểuHọcSinh.AppWidgetContainerParent">
+    <style name="Theme.ThờiKhóaBiểuHọcSinh.AppWidgetContainer" parent="Theme.ThờiKhóaBiểuHọcSinh.AppWidgetContainerParent">
         <!-- Apply padding to avoid the content of the widget colliding with the rounded corners -->
         <item name="appWidgetPadding">5dp</item>
         <item name="android:backgroundTint">@color/white</item>

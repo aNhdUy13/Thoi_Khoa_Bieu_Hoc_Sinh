@@ -5,11 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
-import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -23,12 +20,9 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RemoteViews;
 import android.widget.TextView;
 
 import com.nda.timetable.DataLocalManager;
-import com.nda.timetable.Fragment.Timetable.Widget.MyAppWidget;
-import com.nda.timetable.MainActivity;
 import com.nda.timetable.Models.Timetable;
 import com.nda.timetable.R;
 

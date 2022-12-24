@@ -59,11 +59,14 @@ class WidgetRemoteViewFactory implements RemoteViewsService.RemoteViewsFactory{
         {
             cursor = dbBroadcast.rawQuery("SELECT * FROM Timetable WHERE timetableTime = 'Chiều'", null);
         }
-        else{
+        else if (passedSignal.equals("Tối"))
+        {
             cursor = dbBroadcast.rawQuery("SELECT * FROM Timetable WHERE timetableTime = 'Tối'", null);
         }
+        else{
+            cursor = dbBroadcast.rawQuery("SELECT * FROM Timetable", null);
+        }
 
-//        cursor = dbBroadcast.rawQuery("SELECT * FROM Timetable", null);
 
         while (cursor.moveToNext())
         {

@@ -6,26 +6,20 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.net.Uri;
-import android.util.Log;
-import android.widget.GridView;
+import android.os.Build;
 import android.widget.RemoteViews;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nda.timetable.Fragment.Timetable.Widget.MyAppWidgetProvider;
 import com.nda.timetable.MainActivity;
-import com.nda.timetable.Models.Timetable;
 import com.nda.timetable.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Implementation of App Widget functionality.
  */
-public class MyAppWidget extends AppWidgetProvider {
+public class MyAppWidgetProvider extends AppWidgetProvider {
 
     private static final String REFRESH_DATA    = "REFRESH_DATA";
     private static final String MORNING_DATA    = "MORNING_DATA";
@@ -42,7 +36,8 @@ public class MyAppWidget extends AppWidgetProvider {
     }
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
+                                int appWidgetId)
+    {
         // Back to main action
         Intent intentActionBackToMain = new Intent(context, MainActivity.class);
         PendingIntent pendingIntentBackToMain = PendingIntent.getActivity(
@@ -69,12 +64,12 @@ public class MyAppWidget extends AppWidgetProvider {
 
         // Construct the RemoteViews object
         RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.my_app_widget);
+        rv.setRemoteAdapter(R.id.gridView_widget, intentDisplayMorningData);
         rv.setOnClickPendingIntent(R.id.img_backToApp, pendingIntentBackToMain);
         rv.setOnClickPendingIntent(R.id.txt_titleMorning, getPendingSelfIntent(context, MORNING_DATA));
         rv.setOnClickPendingIntent(R.id.txt_titleAfternoon, getPendingSelfIntent(context, AFTERNOON_DATA));
         rv.setOnClickPendingIntent(R.id.txt_titleNight, getPendingSelfIntent(context, NIGHT_DATA));
         rv.setOnClickPendingIntent(R.id.img_refreshData, getPendingSelfIntent(context,REFRESH_DATA));
-        rv.setRemoteAdapter(R.id.gridView_widget, intentDisplayMorningData);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, rv);
@@ -87,57 +82,96 @@ public class MyAppWidget extends AppWidgetProvider {
         super.onReceive(context, intent);
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 
-        ComponentName watchWidget = new ComponentName(context, MyAppWidget.class);
+        ComponentName watchWidget;
         RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.my_app_widget);
 
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+            watchWidget = new ComponentName(context, WidgetService.class);
+        }
+        else
+        {
+            watchWidget = new ComponentName(context, MyAppWidgetProvider.class);
+        }
+
         if (MORNING_DATA.equals(intent.getAction())) {
-            Intent intentDisplayMorningData = new Intent(context, WidgetService.class);
-            intentDisplayMorningData.putExtra("displayTime", "Sáng");
-            intentDisplayMorningData.setData(Uri.parse(intentDisplayMorningData.toUri(Intent.URI_INTENT_SCHEME)));
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
 
-            rv.setRemoteAdapter(R.id.gridView_widget, intentDisplayMorningData);
+            }
+            else
+            {
+                Intent intentDisplayMorningData = new Intent(context, WidgetService.class);
+                intentDisplayMorningData.putExtra("displayTime", "Sáng");
+                intentDisplayMorningData.setData(Uri.parse(intentDisplayMorningData.toUri(Intent.URI_INTENT_SCHEME)));
 
-            rv.setTextColor(R.id.txt_titleMorning, context.getResources().getColor(R.color.light_blue_widget));
-            rv.setTextColor(R.id.txt_titleAfternoon, context.getResources().getColor(R.color.black));
-            rv.setTextColor(R.id.txt_titleNight, context.getResources().getColor(R.color.black));
+                rv.setRemoteAdapter(R.id.gridView_widget, intentDisplayMorningData);
 
+                rv.setTextColor(R.id.txt_titleMorning, context.getResources().getColor(R.color.light_blue_widget));
+                rv.setTextColor(R.id.txt_titleAfternoon, context.getResources().getColor(R.color.black));
+                rv.setTextColor(R.id.txt_titleNight, context.getResources().getColor(R.color.black));
+            }
 
         }
         if (AFTERNOON_DATA.equals(intent.getAction())) {
-            Intent intentDisplayAfternoonData = new Intent(context, WidgetService.class);
-            intentDisplayAfternoonData.putExtra("displayTime", "Chiều");
-            intentDisplayAfternoonData.setData(Uri.parse(intentDisplayAfternoonData.toUri(Intent.URI_INTENT_SCHEME)));
-            rv.setRemoteAdapter(R.id.gridView_widget, intentDisplayAfternoonData);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+                Toast.makeText(context, "Error : không load được TKB chiều", Toast.LENGTH_SHORT).show();
+                rv.setTextColor(R.id.txt_titleAfternoon, Color.parseColor("#0372CA"));
+                rv.setTextColor(R.id.txt_titleMorning,  Color.parseColor("#FF000000"));
+                rv.setTextColor(R.id.txt_titleNight, Color.parseColor("#FF000000"));
+            }
+            else
+            {
+                Intent intentDisplayAfternoonData = new Intent(context, WidgetService.class);
+                intentDisplayAfternoonData.putExtra("displayTime", "Chiều");
+                intentDisplayAfternoonData.setData(Uri.parse(intentDisplayAfternoonData.toUri(Intent.URI_INTENT_SCHEME)));
+                rv.setRemoteAdapter(R.id.gridView_widget, intentDisplayAfternoonData);
 
-             rv.setTextColor(R.id.txt_titleAfternoon, context.getResources().getColor(R.color.light_blue_widget));
-            rv.setTextColor(R.id.txt_titleMorning, context.getResources().getColor(R.color.black));
-            rv.setTextColor(R.id.txt_titleNight, context.getResources().getColor(R.color.black));
+                rv.setTextColor(R.id.txt_titleAfternoon, context.getResources().getColor(R.color.light_blue_widget));
+                rv.setTextColor(R.id.txt_titleMorning, context.getResources().getColor(R.color.black));
+                rv.setTextColor(R.id.txt_titleNight, context.getResources().getColor(R.color.black));
+            }
 
 
         }
         if (NIGHT_DATA.equals(intent.getAction())) {
-            Intent intentDisplayAfternoonData = new Intent(context, WidgetService.class);
-            intentDisplayAfternoonData.putExtra("displayTime", "Tối");
-            intentDisplayAfternoonData.setData(Uri.parse(intentDisplayAfternoonData.toUri(Intent.URI_INTENT_SCHEME)));
-            rv.setRemoteAdapter(R.id.gridView_widget, intentDisplayAfternoonData);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+                Toast.makeText(context, "Error : không load được TKB tối", Toast.LENGTH_SHORT).show();
 
 
-            rv.setTextColor(R.id.txt_titleNight, context.getResources().getColor(R.color.light_blue_widget));
-            rv.setTextColor(R.id.txt_titleMorning, context.getResources().getColor(R.color.black));
-            rv.setTextColor(R.id.txt_titleAfternoon, context.getResources().getColor(R.color.black));
+            }
+            else
+            {
+                Intent intentDisplayAfternoonData = new Intent(context, WidgetService.class);
+                intentDisplayAfternoonData.putExtra("displayTime", "Tối");
+                intentDisplayAfternoonData.setData(Uri.parse(intentDisplayAfternoonData.toUri(Intent.URI_INTENT_SCHEME)));
+                rv.setRemoteAdapter(R.id.gridView_widget, intentDisplayAfternoonData);
+
+                rv.setTextColor(R.id.txt_titleNight, context.getResources().getColor(R.color.light_blue_widget));
+                rv.setTextColor(R.id.txt_titleMorning, context.getResources().getColor(R.color.black));
+                rv.setTextColor(R.id.txt_titleAfternoon, context.getResources().getColor(R.color.black));
+            }
+
         }
         if (REFRESH_DATA.equals(intent.getAction())) {
             Toast.makeText(context, "Để CẬP NHẬT DỮ LIỆU MỚI NHẤT\n=> Bạn cần xóa và tạo lại Widget \n(Xin lỗi vì sự bất tiện này)", Toast.LENGTH_LONG).show();
         }
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(watchWidget, rv);
-
     }
 
-    protected static PendingIntent getPendingSelfIntent(Context context, String action) {
-        Intent intent = new Intent(context, MyAppWidget.class);
+    public static PendingIntent getPendingSelfIntent(Context context, String action) {
+        Intent intent = new Intent(context, MyAppWidgetProvider.class);
         intent.setAction(action);
         return PendingIntent.getBroadcast(context, 0, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);
+    }
+
+    @Override
+    public void onEnabled(Context context) {
+        // Enter relevant functionality for when the first widget is created
+    }
+
+    @Override
+    public void onDisabled(Context context) {
+        // Enter relevant functionality for when the last widget is disabled
     }
 }
